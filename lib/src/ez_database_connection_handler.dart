@@ -1,7 +1,7 @@
 import 'dart:async';
 
 mixin EzDatabaseConnectionHandler<T> {
-  late final T database;
+   T get database;
 
   bool get isConnectedToDatabase;
 

@@ -7,7 +7,7 @@ import 'package:dart_frog/dart_frog.dart';
 import 'ez_database_connection_handler.dart';
 import 'order.dart';
 
-abstract class EzRequestHandler with EzDatabaseConnectionHandler {
+abstract class EzRequestHandler<T> with EzDatabaseConnectionHandler<T> {
   EzRequestHandler({required this.requestContext});
 
   final RequestContext requestContext;

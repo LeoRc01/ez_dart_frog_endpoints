@@ -117,7 +117,7 @@ abstract class EzRequestHandler<T> with EzDatabaseConnectionHandler<T> {
   }
 
   Future<Response> handleCouldNotConnectResponse() async {
-    await closeDatabaseConnection();
+    //await closeDatabaseConnection();
     return _couldNotConnectResponse;
   }
 

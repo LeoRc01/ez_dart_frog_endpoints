@@ -1,5 +1,5 @@
 mixin EzDatabaseConnectionHandler<T> {
-  T get database;
+  late final T database;
 
   bool get isConnectedToDatabase;
 

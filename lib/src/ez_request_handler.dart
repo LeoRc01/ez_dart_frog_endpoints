@@ -89,7 +89,7 @@ abstract class EzRequestHandler<T> with EzDatabaseConnectionHandler<T> {
     }
 
     try {
-      await openDatabaseConnection();
+      //await openDatabaseConnection();
     } catch (e) {
       return _couldNotConnectResponse;
     }
@@ -97,16 +97,16 @@ abstract class EzRequestHandler<T> with EzDatabaseConnectionHandler<T> {
     if (isConnectedToDatabase) {
       return _handleMethod()
           .catchError((onError, st) async {
-            await closeDatabaseConnection();
+            //await closeDatabaseConnection();
             return _errorResponse(onError);
           })
           .whenComplete(() async {
-            await closeDatabaseConnection();
+            //await closeDatabaseConnection();
           })
           .timeout(
             const Duration(seconds: 5),
             onTimeout: () async {
-              await closeDatabaseConnection();
+              //await closeDatabaseConnection();
               return _connectionTimeout;
             },
           );

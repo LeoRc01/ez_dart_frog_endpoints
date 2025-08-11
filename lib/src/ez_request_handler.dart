@@ -82,20 +82,11 @@ abstract class EzRequestHandler<T> with EzDatabaseConnectionHandler<T> {
     );
   }
 
-  Future<Response> handleResponse({bool requiresToken = true}) async {
-    /*
-    if (requiresToken) {
-      FirebaseVerifyToken.projectId = 'intech-52fc1';
-
-      final isValid = authenticationToken != null
-          ? await FirebaseVerifyToken.verify(authenticationToken!)
-          : false;
-
-      if (!isValid) {
-        return _notAuthorized;
-      }
+  Future<Response> handleResponse({bool requiresAuthentication = true}) async {
+    if (requiresAuthentication) {
+      final auth = await isAuthorized();
+      if (!auth) return _notAuthorized;
     }
- */
 
     try {
       await openDatabaseConnection();
@@ -104,10 +95,6 @@ abstract class EzRequestHandler<T> with EzDatabaseConnectionHandler<T> {
     }
 
     if (isConnectedToDatabase) {
-      if (!isAuthorized) {
-        return _notAuthorized;
-      }
-
       return _handleMethod()
           .catchError((onError, st) async {
             await closeDatabaseConnection();

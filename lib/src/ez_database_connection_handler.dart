@@ -1,9 +1,11 @@
+import 'dart:async';
+
 mixin EzDatabaseConnectionHandler<T> {
   late final T database;
 
   bool get isConnectedToDatabase;
 
-  bool get isAuthorized;
+  FutureOr<bool> isAuthorized();
 
   Future<void> openDatabaseConnection();
 

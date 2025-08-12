@@ -98,7 +98,7 @@ abstract class EzRequestHandler<T> with EzDatabaseConnectionHandler<T> {
       return _handleMethod()
           .catchError((onError, st) async {
             //await closeDatabaseConnection();
-            return _errorResponse(onError);
+            return errorResponse(onError, st);
           })
           .whenComplete(() async {
             //await closeDatabaseConnection();
@@ -139,7 +139,9 @@ abstract class EzRequestHandler<T> with EzDatabaseConnectionHandler<T> {
     }
   }
 
-  Response _errorResponse(dynamic e) => Response(
+  Response errorResponse(dynamic e, dynamic st) => _defaultErrorResponse(e);
+
+  Response _defaultErrorResponse(dynamic e) => Response(
     statusCode: 404,
     body: jsonEncode({
       'details': 'Something went wrong.',

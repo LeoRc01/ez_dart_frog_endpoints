@@ -56,26 +56,26 @@ abstract class EzRequestHandler<T> with EzDatabaseConnectionHandler<T> {
   }
 
   Future<Response> handlePost() async {
-    return _handleUnimplementedMethod();
+    return handleUnimplementedMethod();
   }
 
   Future<Response> handleGet() async {
-    return _handleUnimplementedMethod();
+    return handleUnimplementedMethod();
   }
 
   Future<Response> handlePut() async {
-    return _handleUnimplementedMethod();
+    return handleUnimplementedMethod();
   }
 
   Future<Response> handleDelete() async {
-    return _handleUnimplementedMethod();
+    return handleUnimplementedMethod();
   }
 
   Future<Response> handlePatch() async {
-    return _handleUnimplementedMethod();
+    return handleUnimplementedMethod();
   }
 
-  Response _handleUnimplementedMethod() {
+  Response handleUnimplementedMethod() {
     return Response(
       body: jsonEncode({'details': 'Method not allowed'}),
       statusCode: 405,

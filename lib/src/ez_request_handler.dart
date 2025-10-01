@@ -13,7 +13,7 @@ abstract class EzRequestHandler<T> with EzDatabaseConnectionHandler<T> {
   final RequestContext requestContext;
 
   String? get authenticationToken =>
-      requestContext.request.headers['authentication'];
+      requestContext.request.headers['authorization'];
 
   final int _defaultLimit = 100;
   final int _defaultOffset = 0;

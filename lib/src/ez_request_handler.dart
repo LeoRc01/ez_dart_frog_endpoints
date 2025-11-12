@@ -18,6 +18,16 @@ abstract class EzRequestHandler<T> with EzDatabaseConnectionHandler<T> {
   final int _defaultLimit = 100;
   final int _defaultOffset = 0;
   final Order _defaultOrder = Order.desc;
+  final String _defaultOrderBy = 'id';
+
+  String get orderBy {
+    final orderByString =
+        requestContext.request.uri.queryParameters['order_by'];
+    if (orderByString == null || orderByString.isEmpty) {
+      return _defaultOrderBy;
+    }
+    return orderByString;
+  }
 
   Order get order {
     final orderString = requestContext.request.uri.queryParameters['order'];

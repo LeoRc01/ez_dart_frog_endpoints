@@ -7,7 +7,7 @@ mixin EzDatabaseConnectionHandler<T> {
 
   FutureOr<bool> isAuthorized();
 
-  /*  Future<void> openDatabaseConnection();
+  Future<void> openDatabaseConnection() async {}
 
-  Future<void> closeDatabaseConnection();*/
+  Future<void> closeDatabaseConnection() async {}
 }

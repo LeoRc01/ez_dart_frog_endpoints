@@ -104,6 +104,10 @@ abstract class EzRequestHandler<T> with EzDatabaseConnectionHandler<T> {
       return _couldNotConnectResponse;
     }
 
+    if (!isConnectedToDatabase) {
+      await openDatabaseConnection();
+    }
+
     if (isConnectedToDatabase) {
       return _handleMethod()
           .catchError((onError, st) async {
